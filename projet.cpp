@@ -5,7 +5,7 @@
 #include<QObject>
 #include<QSqlQueryModel>
 #include<QTableView>
-
+//test ajout fichier
 projet::projet()
 {
 id_projet=0; nom_projet="";localisation="";
