@@ -1,0 +1,384 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>952</width>
+    <height>726</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Gestion des Clients</string>
+  </property>
+  <widget class="QWidget" name="centralWidget">
+   <widget class="QGroupBox" name="groupBox">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>0</y>
+      <width>941</width>
+      <height>571</height>
+     </rect>
+    </property>
+    <property name="title">
+     <string>Projet</string>
+    </property>
+    <widget class="QLabel" name="label">
+     <property name="geometry">
+      <rect>
+       <x>90</x>
+       <y>93</y>
+       <width>47</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">font: 12pt &quot;Lucida Console&quot;;</string>
+     </property>
+     <property name="text">
+      <string>id:</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_2">
+     <property name="geometry">
+      <rect>
+       <x>80</x>
+       <y>130</y>
+       <width>47</width>
+       <height>14</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">font: 12pt &quot;Lucida Console&quot;;</string>
+     </property>
+     <property name="text">
+      <string>nom:</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_3">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>170</y>
+       <width>131</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">font: 12pt &quot;Lucida Console&quot;;</string>
+     </property>
+     <property name="text">
+      <string>localisation:</string>
+     </property>
+    </widget>
+    <widget class="QLineEdit" name="id">
+     <property name="geometry">
+      <rect>
+       <x>130</x>
+       <y>90</y>
+       <width>113</width>
+       <height>20</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QLineEdit" name="nom">
+     <property name="geometry">
+      <rect>
+       <x>130</x>
+       <y>130</y>
+       <width>113</width>
+       <height>20</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QLineEdit" name="local">
+     <property name="geometry">
+      <rect>
+       <x>130</x>
+       <y>170</y>
+       <width>113</width>
+       <height>20</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="pushButton">
+     <property name="geometry">
+      <rect>
+       <x>260</x>
+       <y>260</y>
+       <width>75</width>
+       <height>23</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true"> background-color: #3279C1; /* Green */
+  border: none;
+  color: white;
+  padding: 0px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;</string>
+     </property>
+     <property name="text">
+      <string>Ajouter</string>
+     </property>
+    </widget>
+    <widget class="QDateEdit" name="date_deb">
+     <property name="geometry">
+      <rect>
+       <x>130</x>
+       <y>220</y>
+       <width>110</width>
+       <height>22</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QDateEdit" name="date_fin">
+     <property name="geometry">
+      <rect>
+       <x>130</x>
+       <y>260</y>
+       <width>110</width>
+       <height>22</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_4">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>220</y>
+       <width>101</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">font: 12pt &quot;Lucida Console&quot;;</string>
+     </property>
+     <property name="text">
+      <string>Date debut:</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_5">
+     <property name="geometry">
+      <rect>
+       <x>30</x>
+       <y>260</y>
+       <width>91</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">font: 12pt &quot;Lucida Console&quot;;</string>
+     </property>
+     <property name="text">
+      <string>Date fin:</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_6">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>20</y>
+       <width>941</width>
+       <height>551</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="pixmap">
+      <pixmap>:/new/prefix1/Downloads/background 3 (1).jpg</pixmap>
+     </property>
+    </widget>
+    <widget class="QTableView" name="tab_projet">
+     <property name="geometry">
+      <rect>
+       <x>390</x>
+       <y>70</y>
+       <width>531</width>
+       <height>251</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="pb_modifier">
+     <property name="geometry">
+      <rect>
+       <x>260</x>
+       <y>220</y>
+       <width>75</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true"> background-color: #3279C1; /* Green */
+  border: none;
+  color: white;
+  padding: 0px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;</string>
+     </property>
+     <property name="text">
+      <string>Modifier</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="pb_supprimer">
+     <property name="geometry">
+      <rect>
+       <x>260</x>
+       <y>310</y>
+       <width>75</width>
+       <height>23</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true"> background-color: #3279C1; /* Green */
+  border: none;
+  color: white;
+  padding: 0px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;</string>
+     </property>
+     <property name="text">
+      <string>Supprimer</string>
+     </property>
+    </widget>
+    <widget class="QLineEdit" name="id_supp">
+     <property name="geometry">
+      <rect>
+       <x>130</x>
+       <y>310</y>
+       <width>113</width>
+       <height>20</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_7">
+     <property name="geometry">
+      <rect>
+       <x>90</x>
+       <y>310</y>
+       <width>31</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">font: 12pt &quot;Lucida Console&quot;;</string>
+     </property>
+     <property name="text">
+      <string>id:</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="icon4_16">
+     <property name="geometry">
+      <rect>
+       <x>340</x>
+       <y>370</y>
+       <width>41</width>
+       <height>71</height>
+      </rect>
+     </property>
+     <property name="cursor">
+      <cursorShape>PointingHandCursor</cursorShape>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">
+border-image: url(:/icon-ajout2.png);
+background-color: transparent;
+background: none;
+border: none;
+background-repeat: none;
+</string>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+    </widget>
+    <widget class="QLineEdit" name="lawej">
+     <property name="geometry">
+      <rect>
+       <x>390</x>
+       <y>30</y>
+       <width>201</width>
+       <height>20</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_8">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>-7</y>
+       <width>931</width>
+       <height>441</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="pixmap">
+      <pixmap resource="res.qrc">:/new/prefix1/Downloads/background 3.jpg</pixmap>
+     </property>
+    </widget>
+    <zorder>label_8</zorder>
+    <zorder>label_6</zorder>
+    <zorder>icon4_16</zorder>
+    <zorder>label</zorder>
+    <zorder>label_2</zorder>
+    <zorder>label_3</zorder>
+    <zorder>id</zorder>
+    <zorder>nom</zorder>
+    <zorder>local</zorder>
+    <zorder>pushButton</zorder>
+    <zorder>date_deb</zorder>
+    <zorder>date_fin</zorder>
+    <zorder>label_4</zorder>
+    <zorder>label_5</zorder>
+    <zorder>tab_projet</zorder>
+    <zorder>pb_modifier</zorder>
+    <zorder>pb_supprimer</zorder>
+    <zorder>id_supp</zorder>
+    <zorder>label_7</zorder>
+    <zorder>lawej</zorder>
+   </widget>
+  </widget>
+  <widget class="QMenuBar" name="menuBar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>952</width>
+     <height>22</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menugestion_projet">
+    <property name="title">
+     <string>gestion projet</string>
+    </property>
+   </widget>
+   <addaction name="menugestion_projet"/>
+  </widget>
+  <widget class="QToolBar" name="mainToolBar">
+   <attribute name="toolBarArea">
+    <enum>TopToolBarArea</enum>
+   </attribute>
+   <attribute name="toolBarBreak">
+    <bool>false</bool>
+   </attribute>
+  </widget>
+  <widget class="QStatusBar" name="statusBar"/>
+ </widget>
+ <layoutdefault spacing="6" margin="11"/>
+ <resources>
+  <include location="res.qrc"/>
+ </resources>
+ <connections/>
+</ui>

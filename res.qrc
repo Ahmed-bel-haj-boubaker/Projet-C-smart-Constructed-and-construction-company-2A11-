@@ -1,0 +1,6 @@
+<RCC>
+    <qresource prefix="/new/prefix1">
+        <file>res/click.mp3</file>
+        <file>../../Downloads/background 3.jpg</file>
+    </qresource>
+</RCC>
