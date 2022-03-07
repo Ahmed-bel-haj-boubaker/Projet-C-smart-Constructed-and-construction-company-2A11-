@@ -35,7 +35,7 @@
        <rect>
         <x>0</x>
         <y>10</y>
-        <width>471</width>
+        <width>801</width>
         <height>481</height>
        </rect>
       </property>
@@ -230,6 +230,24 @@
        </property>
       </widget>
      </widget>
+     <widget class="QLabel" name="label_8">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>841</width>
+        <height>531</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+      <property name="pixmap">
+       <pixmap>../Users/LENOVO/Downloads/background 3.jpg</pixmap>
+      </property>
+     </widget>
+     <zorder>label_8</zorder>
+     <zorder>groupBox</zorder>
     </widget>
     <widget class="QWidget" name="tab">
      <attribute name="title">
@@ -268,6 +286,26 @@
        <string>Supprimer</string>
       </property>
      </widget>
+     <widget class="QLabel" name="label_9">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>881</width>
+        <height>531</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+      <property name="pixmap">
+       <pixmap>../Users/LENOVO/Downloads/background 3.jpg</pixmap>
+      </property>
+     </widget>
+     <zorder>label_9</zorder>
+     <zorder>table_view</zorder>
+     <zorder>id_val</zorder>
+     <zorder>Supp_btn</zorder>
     </widget>
    </widget>
   </widget>
