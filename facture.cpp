@@ -3,7 +3,7 @@
 #include <QSqlQuery>
 #include <QtDebug>
 #include <QSqlQueryModel>
-
+#include<QtMath>
 Facture::Facture()
 {
   id_facture=0;nom_facture=" "; prenom_facture=" "; date_facture=" "; prix_produit=0; prix_projet=0; montant_total=0;
@@ -34,11 +34,11 @@ void Facture::setprix_projet(float prix_projet ) { this ->prix_projet=prix_proje
 void Facture::setmontant_total(float montant_total) {this ->montant_total=montant_total ; }
 
 
-bool Facture::ajouter()
+bool Facture::ajouter(int id_facture ,QString nom_facture , QString prenom_facture,QString date_facture,float prix_produit,float prix_projet,float montant_total)
 {
- bool test=false;
 
  QSqlQuery query;
+
  QString id_string= QString::number(id_facture);
  QString prixprod_string= QString::number(prix_produit);
  QString prixproj_string= QString::number(prix_projet);
@@ -50,15 +50,14 @@ bool Facture::ajouter()
        query.bindValue(":NOM_FACTURE", nom_facture);
        query.bindValue(":PRENOM_FACTURE", prenom_facture);
         query.bindValue(":DATE_FACTURE", date_facture);
-
         query.bindValue(":PRIX_PRODUIT", prixprod_string);
         query.bindValue(":PRIX_PROJET", prixproj_string);
          query.bindValue(":MONTANT_TOTAL", monttot_string);
 
 
-       query.exec();
 
- return test;
+
+ return query.exec();
 
 }
 QSqlQueryModel* Facture::afficher()
@@ -105,3 +104,69 @@ bool Facture::modifier(int id_facture, QString nom_facture, QString prenom_factu
          query.bindValue(":MONTANT_TOTAL", monttot_string);
        return query.exec();
 }
+QSqlQueryModel * Facture::rechercher(QString search)
+{
+    QSqlQueryModel * model= new QSqlQueryModel();
+    QString qry="select * from FACTURE where ID_FACTURE like '%"+search+"%' or NOM_FACTURE like '%"+search+"%' or MONTANT_TOTAL like '%"+search+"%'";
+
+    model->setQuery(qry);
+    return model;
+}
+QSqlQueryModel *Facture::tri_idP()
+ {
+     QSqlQueryModel * model=new QSqlQueryModel();
+
+     model->setQuery("select * from  FACTURE ORDER BY ID_FACTURE");
+
+     model->setHeaderData(0, Qt::Horizontal,QObject::tr("ID_FACTURE"));
+     model->setHeaderData(1, Qt::Horizontal,QObject::tr("NOM_FACTURE"));
+     model->setHeaderData(2, Qt::Horizontal,QObject::tr("PRENOM_FACTURE"));
+     model->setHeaderData(3, Qt::Horizontal,QObject::tr("DATE_FACTURE"));
+     model->setHeaderData(4, Qt::Horizontal,QObject::tr("PRIX_PRODUIT"));
+     model->setHeaderData(5, Qt::Horizontal,QObject::tr("PRIX_PROJET"));
+     model->setHeaderData(6, Qt::Horizontal,QObject::tr("MONTANT_TOTAL"));
+return model;
+ }
+
+ QSqlQueryModel *Facture::tri_Mon()
+ {
+     QSqlQueryModel * model=new QSqlQueryModel();
+
+     model->setQuery("select * from  FACTURE ORDER BY MONTANT_TOTAL ");
+
+     model->setHeaderData(0, Qt::Horizontal,QObject::tr("ID_FACTURE"));
+     model->setHeaderData(1, Qt::Horizontal,QObject::tr("NOM_FACTURE"));
+     model->setHeaderData(2, Qt::Horizontal,QObject::tr("PRENOM_FACTURE"));
+     model->setHeaderData(3, Qt::Horizontal,QObject::tr("DATE_FACTURE"));
+     model->setHeaderData(4, Qt::Horizontal,QObject::tr("PRIX_PRODUIT"));
+     model->setHeaderData(5, Qt::Horizontal,QObject::tr("PRIX_PROJET"));
+     model->setHeaderData(6, Qt::Horizontal,QObject::tr("MONTANT_TOTAL"));
+return model;
+ }
+
+ QSqlQueryModel *Facture::tri_nomP()
+ {
+     QSqlQueryModel * model=new QSqlQueryModel();
+     model->setQuery("select * from  FACTURE ORDER BY NOM_FACTURE ");
+
+     model->setHeaderData(0, Qt::Horizontal,QObject::tr("ID_FACTURE"));
+     model->setHeaderData(1, Qt::Horizontal,QObject::tr("NOM_FACTURE"));
+     model->setHeaderData(2, Qt::Horizontal,QObject::tr("PRENOM_FACTURE"));
+     model->setHeaderData(3, Qt::Horizontal,QObject::tr("DATE_FACTURE"));
+     model->setHeaderData(4, Qt::Horizontal,QObject::tr("PRIX_PRODUIT"));
+     model->setHeaderData(5, Qt::Horizontal,QObject::tr("PRIX_PROJET"));
+     model->setHeaderData(6, Qt::Horizontal,QObject::tr("MONTANT_TOTAL"));
+
+return model;
+ }
+ bool Facture::calculer(int id_facture, float montant_total)
+ { QSqlQuery query;
+     QString res= QString::number(id_facture);
+     QString monttot_string= QString::number(montant_total);
+
+     query.prepare("UPDATE FACTURE SET MONTANT_TOTAL=:MONTANT_TOTAL WHERE id_facture=:id_facture");
+     query.bindValue(":id_facture",res);
+     query.bindValue(":MONTANT_TOTAL",monttot_string);
+
+       return    query.exec();
+ }
