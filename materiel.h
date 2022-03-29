@@ -6,6 +6,9 @@
 #include <QSqlDatabase>
 #include <QSqlQuery>
 #include <QSqlError>
+#include <QPieSlice>
+#include <QPieSeries>
+#include <QtCharts>
 
 class Materiel
 {
@@ -26,6 +29,13 @@ public:
      QSqlQueryModel* afficher();
      bool supprimer(int);
      bool modifier(int,int,QString ,float,int);
+     QSqlQueryModel * Recherche(QString);
+     QSqlQueryModel * trierMaterielParid();
+      QSqlQueryModel * trierMaterielParNom();
+      QSqlQueryModel * trierMaterielParprix();
+
+
+
 
 private:
     int ID_PRODUIT;

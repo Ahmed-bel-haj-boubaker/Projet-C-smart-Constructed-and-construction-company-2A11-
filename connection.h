@@ -3,6 +3,9 @@
 #include <QSqlDatabase>
 #include <QSqlError>
 #include <QSqlQuery>
+#include <QPieSlice>
+#include <QPieSeries>
+#include <QtCharts>
 
 class Connection
 {

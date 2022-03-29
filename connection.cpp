@@ -2,8 +2,10 @@
 #include <QSqlDatabase>
 #include <QSqlQuery>
 #include <QSqlError>
+#include <QPieSlice>
+#include <QPieSeries>
+#include <QtCharts>
 
-//Test Tutoriel GIT
 Connection::Connection(){}
 
 bool Connection::createconnect()

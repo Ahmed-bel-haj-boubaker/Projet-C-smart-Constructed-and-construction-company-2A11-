@@ -145,140 +145,11 @@
        <pixmap>../../../Desktop/11.png</pixmap>
       </property>
      </widget>
-     <widget class="QPushButton" name="pushButton">
-      <property name="geometry">
-       <rect>
-        <x>390</x>
-        <y>180</y>
-        <width>201</width>
-        <height>28</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>PushButton</string>
-      </property>
-     </widget>
-     <widget class="QPushButton" name="pushButton_2">
-      <property name="geometry">
-       <rect>
-        <x>390</x>
-        <y>240</y>
-        <width>201</width>
-        <height>28</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>PushButton</string>
-      </property>
-     </widget>
-     <widget class="QPushButton" name="pushButton_3">
-      <property name="geometry">
-       <rect>
-        <x>390</x>
-        <y>290</y>
-        <width>201</width>
-        <height>28</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>PushButton</string>
-      </property>
-     </widget>
-     <widget class="QPushButton" name="pushButton_4">
-      <property name="geometry">
-       <rect>
-        <x>390</x>
-        <y>340</y>
-        <width>201</width>
-        <height>28</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>PushButton</string>
-      </property>
-     </widget>
-     <widget class="QPushButton" name="pushButton_5">
-      <property name="geometry">
-       <rect>
-        <x>390</x>
-        <y>400</y>
-        <width>181</width>
-        <height>28</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>PushButton</string>
-      </property>
-     </widget>
     </widget>
     <widget class="QWidget" name="tab_6">
      <attribute name="title">
       <string>Matarielle</string>
      </attribute>
-     <widget class="QPushButton" name="B_produit_rechercher_2">
-      <property name="geometry">
-       <rect>
-        <x>190</x>
-        <y>270</y>
-        <width>93</width>
-        <height>28</height>
-       </rect>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">color: rgb(170, 0, 0);</string>
-      </property>
-      <property name="text">
-       <string>Recherche</string>
-      </property>
-     </widget>
-     <widget class="QPushButton" name="B_produit_nom">
-      <property name="geometry">
-       <rect>
-        <x>480</x>
-        <y>260</y>
-        <width>81</width>
-        <height>28</height>
-       </rect>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">color: rgb(170, 0, 0);</string>
-      </property>
-      <property name="text">
-       <string>Par Nom</string>
-      </property>
-     </widget>
-     <widget class="QPushButton" name="B_produit_Prix">
-      <property name="geometry">
-       <rect>
-        <x>580</x>
-        <y>260</y>
-        <width>81</width>
-        <height>28</height>
-       </rect>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">color: rgb(170, 0, 0);</string>
-      </property>
-      <property name="text">
-       <string>Par Prix</string>
-      </property>
-     </widget>
-     <widget class="QPushButton" name="B_produit_ID">
-      <property name="geometry">
-       <rect>
-        <x>680</x>
-        <y>260</y>
-        <width>93</width>
-        <height>28</height>
-       </rect>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">color: rgb(170, 0, 0);</string>
-      </property>
-      <property name="text">
-       <string>Par ID</string>
-      </property>
-     </widget>
      <widget class="QPushButton" name="B_produit_PDF">
       <property name="geometry">
        <rect>
@@ -311,22 +182,6 @@
        <string>Imprimer</string>
       </property>
      </widget>
-     <widget class="QPushButton" name="B_produit_Historique">
-      <property name="geometry">
-       <rect>
-        <x>850</x>
-        <y>410</y>
-        <width>93</width>
-        <height>28</height>
-       </rect>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">color: rgb(170, 0, 0);</string>
-      </property>
-      <property name="text">
-       <string>Historique</string>
-      </property>
-     </widget>
      <widget class="QTableView" name="tabl_produit">
       <property name="geometry">
        <rect>
@@ -342,34 +197,6 @@
 color: rgb(21, 21, 21);
 background-color: rgb(255, 255, 255);</string>
       </property>
-     </widget>
-     <widget class="QComboBox" name="B_produit_rechercher">
-      <property name="geometry">
-       <rect>
-        <x>20</x>
-        <y>250</y>
-        <width>151</width>
-        <height>22</height>
-       </rect>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">color: rgb(168, 0, 0);</string>
-      </property>
-      <item>
-       <property name="text">
-        <string>Recherche par Nom</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>Recherche par Prix</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>Recherche par ID</string>
-       </property>
-      </item>
      </widget>
      <widget class="QLineEdit" name="E_produit_Reherche">
       <property name="geometry">
@@ -452,7 +279,7 @@ background-color: rgb(255, 255, 255);</string>
       <property name="geometry">
        <rect>
         <x>850</x>
-        <y>460</y>
+        <y>420</y>
         <width>93</width>
         <height>28</height>
        </rect>
@@ -571,8 +398,8 @@ background-color: rgb(255, 255, 255);</string>
      <widget class="QLabel" name="label_23">
       <property name="geometry">
        <rect>
-        <x>580</x>
-        <y>210</y>
+        <x>630</x>
+        <y>260</y>
         <width>71</width>
         <height>16</height>
        </rect>
@@ -650,16 +477,40 @@ color: rgb(170, 85, 0);</string>
        </rect>
       </property>
      </widget>
+     <widget class="QComboBox" name="B_produit_tri">
+      <property name="geometry">
+       <rect>
+        <x>530</x>
+        <y>260</y>
+        <width>73</width>
+        <height>22</height>
+       </rect>
+      </property>
+      <item>
+       <property name="text">
+        <string>Tri </string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Tri Par Nom</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Tri Par Prix</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Tri Par Id</string>
+       </property>
+      </item>
+     </widget>
      <zorder>label</zorder>
-     <zorder>B_produit_rechercher_2</zorder>
-     <zorder>B_produit_nom</zorder>
-     <zorder>B_produit_Prix</zorder>
-     <zorder>B_produit_ID</zorder>
      <zorder>B_produit_PDF</zorder>
      <zorder>B_produit_Imprimer</zorder>
-     <zorder>B_produit_Historique</zorder>
      <zorder>tabl_produit</zorder>
-     <zorder>B_produit_rechercher</zorder>
      <zorder>E_produit_Reherche</zorder>
      <zorder>B_produit_Afficher</zorder>
      <zorder>B_produit_ajouter</zorder>
@@ -679,6 +530,38 @@ color: rgb(170, 85, 0);</string>
      <zorder>E_produit_Quantiter</zorder>
      <zorder>L_produit_remise</zorder>
      <zorder>E_produit_Remise</zorder>
+     <zorder>B_produit_tri</zorder>
+    </widget>
+    <widget class="QWidget" name="tab">
+     <attribute name="title">
+      <string>Historique</string>
+     </attribute>
+     <widget class="QPushButton" name="B_produit_Historique_2">
+      <property name="geometry">
+       <rect>
+        <x>670</x>
+        <y>380</y>
+        <width>141</width>
+        <height>28</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: rgb(170, 0, 0);</string>
+      </property>
+      <property name="text">
+       <string> Affichage Historique</string>
+      </property>
+     </widget>
+     <widget class="QPlainTextEdit" name="plainTextEdit">
+      <property name="geometry">
+       <rect>
+        <x>30</x>
+        <y>60</y>
+        <width>561</width>
+        <height>481</height>
+       </rect>
+      </property>
+     </widget>
     </widget>
    </widget>
   </widget>

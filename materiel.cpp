@@ -1,3 +1,4 @@
+
 #include "materiel.h"
 #include <QSqlQuery>
 #include <QtDebug>
@@ -17,7 +18,9 @@ Materiel::Materiel(int ID_PRODUIT,int QUANTITER,QString NOM_PRODUIT,float PRIX_P
     this->REMISE=REMISE;}
 
 int Materiel::getID_PRODUIT(){return ID_PRODUIT;}
+
 int Materiel::getQUANTITER(){return QUANTITER;}
+
 QString Materiel::getNOM_PRODUIT() {return NOM_PRODUIT;}
 float Materiel::getPRIX_PRODUIT(){return PRIX_PRODUIT;}
 int Materiel::getREMISE(){return REMISE;}
@@ -82,3 +85,110 @@ bool Materiel::modifier(int ID_PRODUIT,int QUANTITER,QString NOM_PRODUIT,float P
         query.bindValue(":REMISE", REMISE_string);
         return query.exec();
  }
+QSqlQueryModel * Materiel::Recherche(QString a)
+{
+    QSqlQueryModel *model=new QSqlQueryModel();
+    model->setQuery("SELECT * FROM MATERIELLES WHERE (ID_PRODUIT LIKE '%"+a+"%' OR QUANTITER LIKE '%"+a+"%' OR NOM_PRODUIT LIKE '%"+a+"%' OR PRIX_PRODUIT LIKE '%"+a+"%' OR REMISE LIKE '%"+a+"%'  ) ");
+    model->setHeaderData(0,Qt::Horizontal,QObject::tr("ID_PRODUIT"));
+    model->setHeaderData(1,Qt::Horizontal,QObject::tr("QUANTITER"));
+    model->setHeaderData(2,Qt::Horizontal,QObject::tr("NOM_PRODUIT"));
+    model->setHeaderData(3,Qt::Horizontal,QObject::tr("PRIX_PRODUIT"));
+    model->setHeaderData(4,Qt::Horizontal,QObject::tr("REMISE"));
+    return model;
+}
+//Trie Par id
+/*QSqlQueryModel * Materiel::trierMaterielParid()
+{
+
+    QSqlQueryModel * model=new QSqlQueryModel();
+
+        model->setQuery("select * from  MATERIELLES ORDER BY ID_PRODUIT ASC");
+
+        model->setHeaderData(0, Qt::Horizontal,QObject::tr("ID_PRODUIT"));
+        model->setHeaderData(1, Qt::Horizontal,QObject::tr("QUANTITER"));
+        model->setHeaderData(2, Qt::Horizontal,QObject::tr("NOM_PRODUIT"));
+        model->setHeaderData(3, Qt::Horizontal,QObject::tr("PRIX_PRODUIT"));
+        model->setHeaderData(4, Qt::Horizontal,QObject::tr("REMISE"));
+
+   return model;
+}
+QSqlQueryModel *  Materiel::trierMaterielParNom()
+{
+    QSqlQueryModel * model=new QSqlQueryModel();
+
+    model->setQuery("select * from  MATERIELLES ORDER BY NOM_PRODUIT ASC ");
+
+    model->setHeaderData(0, Qt::Horizontal,QObject::tr("ID_PRODUIT"));
+    model->setHeaderData(1, Qt::Horizontal,QObject::tr("QUANTITER"));
+    model->setHeaderData(2, Qt::Horizontal,QObject::tr("NOM_PRODUIT"));
+    model->setHeaderData(3, Qt::Horizontal,QObject::tr("PRIX_PRODUIT"));
+    model->setHeaderData(4, Qt::Horizontal,QObject::tr("REMISE"));
+return model;
+}
+//Trie Par prix
+QSqlQueryModel * Materiel::trierMaterielParprix()
+{
+
+    QSqlQueryModel * model=new QSqlQueryModel();
+
+    model->setQuery("select * from  MATERIELLES ORDER BY PRIX_PRODUIT ASC ");
+
+    model->setHeaderData(0, Qt::Horizontal,QObject::tr("ID_PRODUIT"));
+    model->setHeaderData(1, Qt::Horizontal,QObject::tr("QUANTITER"));
+    model->setHeaderData(2, Qt::Horizontal,QObject::tr("NOM_PRODUIT"));
+    model->setHeaderData(3, Qt::Horizontal,QObject::tr("PRIX_PRODUIT"));
+    model->setHeaderData(4, Qt::Horizontal,QObject::tr("REMISE"));
+return model;
+}*/
+//Trie Par id
+QSqlQueryModel * Materiel::trierMaterielParid()
+{
+
+   /* QSqlQuery * q = new  QSqlQuery ();
+           QSqlQueryModel * model = new  QSqlQueryModel ();
+           q->prepare("SELECT * FROM MATERIELLES order by ID_PRODUIT ASC");
+           q->exec();
+           model->setQuery(*q);
+           return model;
+           */
+    QSqlQueryModel* model=new QSqlQueryModel();
+
+    model->setQuery("SELECT * FROM MATERIELLES  order by ID_PRODUIT ASC ");
+    model->setHeaderData(0, Qt::Horizontal, QObject::tr("ID_PRODUIT"));
+    model->setHeaderData(1, Qt::Horizontal, QObject::tr("QUANTITER"));
+    model->setHeaderData(2, Qt::Horizontal, QObject::tr("NOM_PRODUIT"));
+    model->setHeaderData(3, Qt::Horizontal, QObject::tr("PRIX_PRODUIT"));
+    model->setHeaderData(4, Qt::Horizontal, QObject::tr("REMISE"));
+
+
+        return model;
+}
+
+//Trie Par Nom
+QSqlQueryModel * Materiel::trierMaterielParNom()
+{
+
+    QSqlQuery * q = new  QSqlQuery ();
+           QSqlQueryModel * model = new  QSqlQueryModel ();
+           q->prepare("SELECT * FROM MATERIELLES order by NOM_PRODUIT ASC");
+           q->exec();
+           model->setQuery(*q);
+           return model;
+}
+
+//Trie Par prix
+QSqlQueryModel * Materiel::trierMaterielParprix()
+{
+
+    QSqlQuery * q = new  QSqlQuery ();
+           QSqlQueryModel * model = new  QSqlQueryModel ();
+           q->prepare("SELECT * FROM MATERIELLES order by PRIX_PRODUIT ASC");
+           q->exec();
+           model->setQuery(*q);
+           return model;
+}
+
+
+
+
+
