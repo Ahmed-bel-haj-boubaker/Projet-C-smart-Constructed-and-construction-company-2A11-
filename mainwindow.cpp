@@ -22,6 +22,7 @@
 #include <QPrintDialog>
 #include <QFile>
 #include <QDateTime>
+#include <QSystemTrayIcon>
 
 
 
@@ -36,6 +37,9 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+    QString date_string_on_db = "05/04/2022";
+    QDate Date = QDate::fromString(date_string_on_db,"dd/MM/yyyy");
+    if(QDate::currentDate()==Date)M.appliquerRemise();
   ui->E_produit_ID->setValidator(new QIntValidator(0, 9999999, this));
   ui->E_produit_Prix->setValidator(new QIntValidator(0, 9999999, this));
   ui->E_produit_Quantiter->setValidator(new QIntValidator(0, 9999999, this));
@@ -81,13 +85,22 @@ void MainWindow::on_B_produit_ajouter_clicked()
        QMessageBox msgBox;
        if(test)
        {
-                     msgBox.setText("ajout avec succes");
-                          msgBox.exec();
+           QString date_string_on_db = "05/04/2022";
+           QDate Date = QDate::fromString(date_string_on_db,"dd/MM/yyyy");
+           if(QDate::currentDate()==Date)M.appliquerRemise();
+           QSystemTrayIcon* notifier = new QSystemTrayIcon(this);
+                           notifier->setIcon(QIcon("C:/Users/User/Desktop/Gestion_materiele/main.png"));
+                            notifier->show();
+                            notifier->showMessage("Materiel ajouté","Succes",QSystemTrayIcon::Information,10000);
+
                            }
                            else
                            {
-                               msgBox.setText("echec");
-                           msgBox.exec();
+           QSystemTrayIcon* notifier = new QSystemTrayIcon(this);
+                           notifier->setIcon(QIcon(""));
+                            notifier->show();
+                            notifier->showMessage("Materiel non ajouté","Echéc",QSystemTrayIcon::Critical,10000);
+
                            }
                            ui->tabl_produit->setModel(M.afficher());
       }
@@ -111,15 +124,24 @@ void MainWindow::on_B_produit_supprimer_clicked()
         f.close();
     Materiel M1; M1.setID_PRODUIT(ui->E_produit_ID_supprimer->text().toInt());
     bool test=M1.supprimer(M1.getID_PRODUIT());
-    QMessageBox msgBox;
+
     if(test)
-    {msgBox.setText("Suppression avec succes.");
+    {  QSystemTrayIcon* notifier = new QSystemTrayIcon(this);
+        notifier->setIcon(QIcon(""));
+         notifier->show();
+         notifier->showMessage("Materiel supprimé","Succés",QSystemTrayIcon::Information,10000);
+
         ui->tabl_produit->setModel(M.afficher());
     }
 
-    else
-       QMessageBox::critical(nullptr, QObject::tr("not ok"),QObject::tr("suppression non effectuee.\n" "click Cancel to exit."),QMessageBox::Cancel);
-}
+    else{
+        QSystemTrayIcon* notifier = new QSystemTrayIcon(this);
+                        notifier->setIcon(QIcon(""));
+                         notifier->show();
+                         notifier->showMessage("Materiel non supprimé","Echéc",QSystemTrayIcon::Critical,10000);
+
+    }
+       }
 
 void MainWindow::on_B_produit_Afficher_clicked()
 {
@@ -164,17 +186,27 @@ void MainWindow::on_B_produit_Modifier_clicked()
 
              bool test=M.modifier(ID_PRODUIT,QUANTITER,NOM_PRODUIT,PRIX_PRODUIT,REMISE);
              if(test)
-           {ui->tabl_produit->setModel(M.afficher());
-           QMessageBox::information(nullptr, QObject::tr("Modifier avec succées "),
-                             QObject::tr("invite modifiée.\n"
-                                         "Click ok to exit."), QMessageBox::Ok);
+           {
+                 QString date_string_on_db = "05/04/2022";
+                 QDate Date = QDate::fromString(date_string_on_db,"dd/MM/yyyy");
+                 if(QDate::currentDate()==Date)M.appliquerRemise();
+
+
+                 ui->tabl_produit->setModel(M.afficher());
+                 QSystemTrayIcon* notifier = new QSystemTrayIcon(this);
+                                 notifier->setIcon(QIcon(""));
+                                  notifier->show();
+                                  notifier->showMessage("Materiel modifié","Succes",QSystemTrayIcon::Information,10000);
+
 
            }
              else
-                 QMessageBox::critical(nullptr, QObject::tr("Modifier a echoué"),
-                             QObject::tr("echec d'ajout !.\n"
-                                         "Click Cancel to exit."), QMessageBox::Cancel);
-}
+               {  QSystemTrayIcon* notifier = new QSystemTrayIcon(this);
+                                 notifier->setIcon(QIcon(""));
+                                  notifier->show();
+                                  notifier->showMessage("Materiel non modifié","Echec",QSystemTrayIcon::Critical,10000);
+
+}}
 
 void MainWindow::on_E_produit_Reherche_textChanged(const QString &arg1)
 {
