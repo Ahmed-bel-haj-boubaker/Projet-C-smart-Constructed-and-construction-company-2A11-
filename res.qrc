@@ -1,6 +1,58 @@
 <RCC>
-    <qresource prefix="/new/prefix1">
+    <qresource prefix="/prefix/new">
         <file>res/click.mp3</file>
-        <file>../../Downloads/background 3.jpg</file>
+        <file>res/circle-check-solid.png</file>
+        <file>res/unknown-removebg-preview.png</file>
+        <file>res/images (1).png</file>
+        <file>res/84380.png</file>
+        <file>res/272658887_1094234024663786_8066416847757236482_n (1).png</file>
+        <file>res/272658887_1094234024663786_8066416847757236482_n.png</file>
+        <file>res/plus-circle.png</file>
+        <file>res/edit.png</file>
+        <file>res/trash-2.png</file>
+        <file>res/arrow-right.png</file>
+        <file>res/log-in.png</file>
+        <file>res/search (3).png</file>
+        <file>res/img_501696.png</file>
+        <file>res/truck.png</file>
+        <file>res/home.png</file>
+        <file>res/users.png</file>
+        <file>res/hummer-with-screwdriver-icon-vector-19696085.jpg</file>
+        <file>res/hummer-with-screwdriver-icon-vector-19696085-removebg-preview.png</file>
+        <file>res/2205928-icone-de-facture-de-paiement-gratuit-vectoriel-removebg-preview.png</file>
+        <file>res/istockphoto-952039286-170667a.jpg</file>
+        <file>res/80-804604_retro-wallpaper-hd.jpg</file>
+        <file>res/wallpapersden.com_synthwave-and-retrowave_2560x1080.jpg</file>
+        <file>res/log-out.png</file>
+        <file>res/menu.png</file>
+        <file>res/CONSTOP.mp4</file>
+        <file>res/constop.png</file>
+        <file>res/users1.png</file>
+        <file>res/home41.png</file>
+        <file>res/home41-removebg-preview.png</file>
+        <file>res/stat.png</file>
+        <file>res/left.png</file>
+        <file>res/imprimer.png</file>
+        <file>res/calcul.png</file>
+        <file>res/translate.png</file>
+        <file>res/Ariana.png</file>
+        <file>res/bizert.png</file>
+        <file>res/grombalia.png</file>
+        <file>res/nabeul.png</file>
+        <file>res/sfax.png</file>
+        <file>res/sousse.png</file>
+        <file>res/tozeur.png</file>
+        <file>res/constop1.png</file>
+        <file>res/useraaa.png</file>
+        <file>res/constop1-removebg-preview.png</file>
+        <file>res/download (3).png</file>
+        <file>res/add.png</file>
+        <file>res/stwitch.png</file>
+        <file>res/pin-png-39478.png</file>
+        <file>res/TUNISIE.png</file>
+        <file>res/notification.jpg</file>
+    </qresource>
+    <qresource prefix="/">
+        <file>res/notification.jpg</file>
     </qresource>
 </RCC>
