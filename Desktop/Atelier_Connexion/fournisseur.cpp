@@ -3,6 +3,7 @@
 #include <QtDebug>
 #include <QSqlQueryModel>
 #include <QObject>
+
 Fournisseur::Fournisseur()
 {
 id_fournisseur=0; nom_fournisseur=" "; prenom_fournisseur=" "; adresse_fournisseur=" ";num_tel_fournisseur=0;email_fournisseur=" ";
@@ -29,7 +30,7 @@ bool Fournisseur::ajouter()
 QString num_tel_fournisseur_string=QString::number(num_tel_fournisseur);
          query.prepare("INSERT INTO fournisseur (id_fournisseur,nom_fournisseur,prenom_fournisseur,adresse_fournisseur,num_tel_fournisseur,email_fournisseur) "
                        "VALUES (:id, :forename,:surname, :adresse, :num_tel, :email)");
-         query.bindValue(":id", id_fournisseur_string);
+          query.bindValue(":id", id_fournisseur_string);
          query.bindValue(":forename", nom_fournisseur);
          query.bindValue(":surname", prenom_fournisseur);
          query.bindValue(":adresse", adresse_fournisseur);
@@ -86,6 +87,53 @@ bool Fournisseur::modifierFournisseur(int id_fournisseur,QString nom_fournisseur
 
 
 }
+void Fournisseur::recherche(QTableView * table ,int id_fournisseur )
+{
+    QSqlQueryModel *model= new QSqlQueryModel();
+    QString id_fournisseur_string=QString::number(id_fournisseur);
+
+
+    QSqlQuery *query=new QSqlQuery;
+    query->prepare("select * from FOURNISSEUR where ID_FOURNISSEUR like '%"+id_fournisseur_string+"%' ;");
+
+
+    query->exec();
+    model->setQuery(*query);
+    table->setModel(model);
+    table->show();
+
+}
+
+QSqlQueryModel * Fournisseur::trierid()
+
+ {
+
+     QSqlQueryModel * model=new QSqlQueryModel();
+
+     model->setQuery("select * from FOURNISSEUR ORDER BY ID_FOURNISSEUR");
+
+     model->setHeaderData(0,Qt::Horizontal, QObject::tr("ID_FOURNISSEUR"));
+
+     model->setHeaderData(1,Qt::Horizontal, QObject::tr("NOM_FOURNISSEUR"));
+
+     model->setHeaderData(2,Qt::Horizontal, QObject::tr("PRENOM_FOURNISSEUR"));
+
+     model->setHeaderData(3,Qt::Horizontal, QObject::tr("ADRESSE_FOURNISSEUR"));
+
+     model->setHeaderData(4,Qt::Horizontal,QObject::tr("NUM_TEL_FOURNISSEUR"));
+
+     model->setHeaderData(5,Qt::Horizontal,QObject::tr("EMAIL_FOURNISSEUR"));
+
+
+
+
+
+     return model;
+
+ }
+
+
+
 
 
 

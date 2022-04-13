@@ -6,6 +6,7 @@
 #include <QtSql/QSqlQueryModel>
 #include <QMainWindow>
 #include<QSqlQuery>
+#include <QTableView>
 class Fournisseur
 {
 public:
@@ -28,6 +29,8 @@ bool ajouter();
 QSqlQueryModel* afficher();
     bool supprimer(int);
     bool modifierFournisseur(int id_fournisseur,QString nom_fournisseur,QString prenom_fournisseur,QString adresse_fournisseur, int num_tel_fournisseur,QString email_fournisseur);
+    QSqlQueryModel * trierid();
+    void recherche(QTableView * tabl, int);
 private:
     int id_fournisseur,num_tel_fournisseur;
     QString nom_fournisseur, prenom_fournisseur, adresse_fournisseur, email_fournisseur;

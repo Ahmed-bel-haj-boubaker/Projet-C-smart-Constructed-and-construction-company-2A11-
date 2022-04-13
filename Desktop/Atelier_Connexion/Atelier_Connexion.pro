@@ -3,8 +3,9 @@
 # Project created by QtCreator 2018-10-26T21:45:23
 #
 #-------------------------------------------------
+QT       += charts
+QT       += core gui sql printsupport widgets
 
-QT       += core gui sql
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -28,12 +29,16 @@ SOURCES += \
     fournisseur.cpp \
         main.cpp \
         mainwindow.cpp \
-    connection.cpp
+    connection.cpp \
+    reclamation.cpp \
+    utilisateur.cpp
 
 HEADERS += \
     fournisseur.h \
         mainwindow.h \
-    connection.h
+    connection.h \
+    reclamation.h \
+    utilisateur.h
 
 FORMS += \
         mainwindow.ui
