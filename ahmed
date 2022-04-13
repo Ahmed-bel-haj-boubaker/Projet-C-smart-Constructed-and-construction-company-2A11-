@@ -1,1 +1,148 @@
 
+#include <Servo.h>
+#include <SPI.h>
+#include <RFID.h>
+#include <Wire.h> 
+#include <LiquidCrystal_I2C.h>
+#define pas  20
+LiquidCrystal_I2C lcd(0x27,20,4);
+char data;
+RFID rfid(10, 9);
+
+byte kart[5] = {28,48,243,55,232};
+byte kart2[5] = {38,187,87,165,111};
+byte kart3[5] = {19,56,129,21,191};
+
+Servo myservo;
+boolean card;
+int x;
+
+void setup()
+{
+
+  Serial.begin(9600);
+  SPI.begin();
+  rfid.init();
+  myservo.attach(3);
+  myservo.write(100);
+   lcd.init();                      // initialize the lcd 
+  lcd.init();
+  // Print a message to the LCD.
+  lcd.backlight();
+  lcd.setCursor(3,0);
+  lcd.print("Hello!");
+  lcd.setCursor(2,1);
+  lcd.print("smart station!");
+ 
+}
+
+void loop()
+{
+if (Serial.available()){     
+    //Si un message a été reçu  faire ceci
+     data=Serial.read();  
+     // controler la lampe 1 reliée à la broche 13
+     //récuperer le caractère reçu
+     if(data=='1') //si le caractère lu est égale à 1
+    {
+      lcd.setCursor(0,0);
+      lcd.print(" ?? allert !!!!! "); // alumer la lampe 
+      Serial.write('1'); //envoyer le nouvel état de la lampe  
+     }  
+     else if(data=='0') //si le caractère lu est égale à 0
+
+     {lcd.setCursor(0,0);
+       lcd.print("  echecc   !!!!!         ");  //éteindre la lampe
+        Serial.write('0'); //envoyer le nouvel état de la lampe
+     
+     }   
+     // Régler l'intensité de la luminosité de la deuxième lampe branchée sur la broche 11
+     else if(data=='2') //si le caractère reçu est égale à 2
+     {
+        if(x+pas<=255) // si l'intesité est encore inférieur à l'intensité max=255 
+        // incrémenter l'intesité de la lumière   
+         lcd.setCursor(0,0); 
+      lcd.print(" verifié            ");
+        Serial.write('2');
+     }  
+     else if(data=='3')
+     {
+       
+         
+      lcd.setCursor(0,0); 
+      lcd.print(" bonne route  !!!!!!!!!!!!         ");
+        
+     
+     } 
+  }
+
+
+
+  if (rfid.isCard())
+  {
+
+
+
+
+    if (rfid.readCardSerial())
+    {
+      Serial.print("Found ID: ");
+      Serial.print(rfid.serNum[0]);
+      Serial.print(",");
+      Serial.print(rfid.serNum[1]);
+      Serial.print(",");
+      Serial.print(rfid.serNum[2]);
+      Serial.print(",");
+      Serial.print(rfid.serNum[3]);
+      Serial.print(",");
+      Serial.println(rfid.serNum[4]);
+    }
+    for (int i = 1; i < 5; i++)
+    {
+      
+      if (rfid.serNum[0] == kart[0] && rfid.serNum[1] == kart[1] && rfid.serNum[2] == kart[2] && rfid.serNum[3] == kart[3] && rfid.serNum[4] == kart[4])
+      {
+         
+    lcd.setCursor(0,0);
+  lcd.print("   agent station    ");
+  Serial.println("2");
+        card = true;
+        
+      }
+       else if (rfid.serNum[0] == kart2[0] && rfid.serNum[1] == kart2[1] && rfid.serNum[2] == kart2[2] && rfid.serNum[3] == kart2[3] && rfid.serNum[4] == kart2[4])
+      { 
+        lcd.setCursor(1,0);
+  lcd.print("  employer                 ");
+   Serial.println("1");
+  lcd.backlight();
+        card = true;
+       
+      }
+       else if (rfid.serNum[0] == kart3[0] && rfid.serNum[1] == kart3[1] && rfid.serNum[2] == kart3[2] && rfid.serNum[3] == kart3[3] && rfid.serNum[4] == kart3[4])
+      {
+        lcd.setCursor(0,0);
+  lcd.print("  client                  ");
+  Serial.println("3");
+        card = true;
+      
+      }
+      else {
+        card = false;
+      }
+    }
+    if (card == true)
+    {
+
+     
+      myservo.write(20);
+      delay(1000);
+      myservo.write(100);
+    }
+    else
+    {
+
+        Serial.println("Wrong Card");
+    }
+    rfid.halt();
+  }
+}
