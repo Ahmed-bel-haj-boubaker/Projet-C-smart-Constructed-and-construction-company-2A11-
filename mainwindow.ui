@@ -86,7 +86,7 @@ color:white;
        <property name="geometry">
         <rect>
          <x>50</x>
-         <y>300</y>
+         <y>360</y>
          <width>151</width>
          <height>41</height>
         </rect>
@@ -128,7 +128,7 @@ color:white;
        <property name="geometry">
         <rect>
          <x>50</x>
-         <y>360</y>
+         <y>300</y>
          <width>151</width>
          <height>41</height>
         </rect>
@@ -470,7 +470,7 @@ background-color:#023047;
         <string notr="true">background-color:#023047;</string>
        </property>
        <property name="currentIndex">
-        <number>2</number>
+        <number>6</number>
        </property>
        <widget class="QWidget" name="page_6">
         <widget class="QGroupBox" name="add">
@@ -2105,7 +2105,7 @@ border-radius:8px;}</string>
          <property name="geometry">
           <rect>
            <x>400</x>
-           <y>0</y>
+           <y>10</y>
            <width>361</width>
            <height>321</height>
           </rect>
@@ -3037,9 +3037,9 @@ background-color:#0077b6;}</string>
          <property name="geometry">
           <rect>
            <x>10</x>
-           <y>20</y>
-           <width>361</width>
-           <height>291</height>
+           <y>30</y>
+           <width>341</width>
+           <height>281</height>
           </rect>
          </property>
          <property name="styleSheet">
@@ -3412,6 +3412,745 @@ border:2px solid rgb(163, 163, 163);
 border-radius:8px;}</string>
           </property>
          </widget>
+        </widget>
+       </widget>
+       <widget class="QWidget" name="page_9">
+        <widget class="QGroupBox" name="add_3">
+         <property name="geometry">
+          <rect>
+           <x>0</x>
+           <y>0</y>
+           <width>361</width>
+           <height>321</height>
+          </rect>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">font: 75 12pt &quot;System&quot;;
+border-radius:25px;
+background-color:white;</string>
+         </property>
+         <property name="title">
+          <string>AJOUTER ET MODIFIER</string>
+         </property>
+         <widget class="QLabel" name="label_55">
+          <property name="geometry">
+           <rect>
+            <x>10</x>
+            <y>30</y>
+            <width>131</width>
+            <height>16</height>
+           </rect>
+          </property>
+          <property name="text">
+           <string>ID Materiel:</string>
+          </property>
+         </widget>
+         <widget class="QLabel" name="label_56">
+          <property name="geometry">
+           <rect>
+            <x>10</x>
+            <y>60</y>
+            <width>161</width>
+            <height>16</height>
+           </rect>
+          </property>
+          <property name="text">
+           <string>Nom:</string>
+          </property>
+         </widget>
+         <widget class="QLabel" name="label_57">
+          <property name="geometry">
+           <rect>
+            <x>10</x>
+            <y>90</y>
+            <width>171</width>
+            <height>16</height>
+           </rect>
+          </property>
+          <property name="text">
+           <string>Prix:</string>
+          </property>
+         </widget>
+         <widget class="QLabel" name="label_60">
+          <property name="geometry">
+           <rect>
+            <x>10</x>
+            <y>120</y>
+            <width>241</width>
+            <height>16</height>
+           </rect>
+          </property>
+          <property name="text">
+           <string>Quantiter:</string>
+          </property>
+         </widget>
+         <widget class="QLabel" name="label_61">
+          <property name="geometry">
+           <rect>
+            <x>10</x>
+            <y>150</y>
+            <width>201</width>
+            <height>16</height>
+           </rect>
+          </property>
+          <property name="text">
+           <string>Remise:</string>
+          </property>
+         </widget>
+         <widget class="QLineEdit" name="E_produit_ID">
+          <property name="geometry">
+           <rect>
+            <x>210</x>
+            <y>30</y>
+            <width>141</width>
+            <height>21</height>
+           </rect>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">
+QLineEdit{
+border:2px solid rgb(163, 163, 163);
+/*border:	rgb(179, 179, 179);*/
+border-radius:8px;
+/*color:rgb(165, 165, 165);*/
+padding-left:8px;
+padding-right:8px;
+/*background-color:rgb(255, 255, 255);*/}
+QLineEdit:hover{
+border:2px solid rgb(48,50,62);
+border-radius:8px;
+}
+QLineEdit:focus{
+border:2px solid rgb(163, 163, 163);
+border-radius:8px;}</string>
+          </property>
+         </widget>
+         <widget class="QLineEdit" name="E_produit_Quantiter">
+          <property name="geometry">
+           <rect>
+            <x>210</x>
+            <y>120</y>
+            <width>141</width>
+            <height>20</height>
+           </rect>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">
+QLineEdit{
+border:2px solid rgb(163, 163, 163);
+/*border:	rgb(179, 179, 179);*/
+border-radius:8px;
+/*color:rgb(165, 165, 165);*/
+padding-left:8px;
+padding-right:8px;
+/*background-color:rgb(255, 255, 255);*/}
+QLineEdit:hover{
+border:2px solid rgb(48,50,62);
+border-radius:8px;
+}
+QLineEdit:focus{
+border:2px solid rgb(163, 163, 163);
+border-radius:8px;}</string>
+          </property>
+         </widget>
+         <widget class="QLineEdit" name="E_produit_Remise">
+          <property name="geometry">
+           <rect>
+            <x>210</x>
+            <y>150</y>
+            <width>141</width>
+            <height>20</height>
+           </rect>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">
+
+QLineEdit{
+border:2px solid rgb(163, 163, 163);
+/*border:	rgb(179, 179, 179);*/
+border-radius:8px;
+/*color:rgb(165, 165, 165);*/
+padding-left:8px;
+padding-right:8px;
+/*background-color:rgb(255, 255, 255);*/}
+QLineEdit:hover{
+border:2px solid rgb(48,50,62);
+border-radius:8px;
+}
+QLineEdit:focus{
+border:2px solid rgb(163, 163, 163);
+border-radius:8px;}</string>
+          </property>
+         </widget>
+         <widget class="QLineEdit" name="E_produit_Prix">
+          <property name="geometry">
+           <rect>
+            <x>210</x>
+            <y>90</y>
+            <width>141</width>
+            <height>20</height>
+           </rect>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">
+QLineEdit{
+border:2px solid rgb(163, 163, 163);
+/*border:	rgb(179, 179, 179);*/
+border-radius:8px;
+/*color:rgb(165, 165, 165);*/
+padding-left:8px;
+padding-right:8px;
+/*background-color:rgb(255, 255, 255);*/}
+QLineEdit:hover{
+border:2px solid rgb(48,50,62);
+border-radius:8px;
+}
+QLineEdit:focus{
+border:2px solid rgb(163, 163, 163);
+border-radius:8px;}</string>
+          </property>
+         </widget>
+         <widget class="QLineEdit" name="E_produit_Nom">
+          <property name="geometry">
+           <rect>
+            <x>210</x>
+            <y>60</y>
+            <width>141</width>
+            <height>21</height>
+           </rect>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">
+QLineEdit{
+border:2px solid rgb(163, 163, 163);
+/*border:	rgb(179, 179, 179);*/
+border-radius:8px;
+/*color:rgb(165, 165, 165);*/
+padding-left:8px;
+padding-right:8px;
+/*background-color:rgb(255, 255, 255);*/}
+QLineEdit:hover{
+border:2px solid rgb(48,50,62);
+border-radius:8px;
+}
+QLineEdit:focus{
+border:2px solid rgb(163, 163, 163);
+border-radius:8px;}</string>
+          </property>
+         </widget>
+         <widget class="QPushButton" name="B_produit_ajouter">
+          <property name="geometry">
+           <rect>
+            <x>10</x>
+            <y>220</y>
+            <width>101</width>
+            <height>31</height>
+           </rect>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">
+QPushButton{
+border-style:solid;
+border-width: 2px;
+border-color: #999999;
+border-radius: 10px;
+/*background-color:rgb(58, 122, 62);*/
+
+background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+stop: 0 #CCCCCC, stop: 1 #AAAAAA);
+}
+QPushButton:hover{
+background-color:#0077b6;
+
+color:rgb(255,255,255);
+ 
+}
+QPushButton:pressed{
+background-color:#0077b6;}</string>
+          </property>
+          <property name="text">
+           <string>AJOUTER</string>
+          </property>
+          <property name="icon">
+           <iconset resource="res.qrc">
+            <normaloff>:/prefix/new/res/plus-circle.png</normaloff>:/prefix/new/res/plus-circle.png</iconset>
+          </property>
+         </widget>
+         <widget class="QPushButton" name="B_produit_Modifier">
+          <property name="geometry">
+           <rect>
+            <x>230</x>
+            <y>220</y>
+            <width>101</width>
+            <height>31</height>
+           </rect>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">
+QPushButton{
+border-style:solid;
+border-width: 2px;
+border-color: #999999;
+border-radius: 10px;
+/*background-color:rgb(58, 122, 62);*/
+
+background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+stop: 0 #CCCCCC, stop: 1 #AAAAAA);
+}
+QPushButton:hover{
+background-color:#0077b6;
+
+color:rgb(255,255,255);
+ 
+}
+QPushButton:pressed{
+background-color:#0077b6;}</string>
+          </property>
+          <property name="text">
+           <string>MODIFIER</string>
+          </property>
+          <property name="icon">
+           <iconset resource="res.qrc">
+            <normaloff>:/prefix/new/res/edit.png</normaloff>:/prefix/new/res/edit.png</iconset>
+          </property>
+         </widget>
+         <widget class="QPushButton" name="B_produit_Imprimer_2">
+          <property name="geometry">
+           <rect>
+            <x>120</x>
+            <y>220</y>
+            <width>101</width>
+            <height>31</height>
+           </rect>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">
+QPushButton{
+border-style:solid;
+border-width: 2px;
+border-color: #999999;
+border-radius: 10px;
+/*background-color:rgb(58, 122, 62);*/
+
+background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+stop: 0 #CCCCCC, stop: 1 #AAAAAA);
+}
+QPushButton:hover{
+background-color:#0077b6;
+
+color:rgb(255,255,255);
+ 
+}
+QPushButton:pressed{
+background-color:#0077b6;}</string>
+          </property>
+          <property name="text">
+           <string>IMPRIMER</string>
+          </property>
+          <property name="icon">
+           <iconset resource="res.qrc">
+            <normaloff>:/prefix/new/res/imprimer.png</normaloff>:/prefix/new/res/imprimer.png</iconset>
+          </property>
+         </widget>
+         <widget class="QPushButton" name="B_produit_Afficher">
+          <property name="geometry">
+           <rect>
+            <x>60</x>
+            <y>280</y>
+            <width>101</width>
+            <height>31</height>
+           </rect>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">
+
+
+QPushButton{
+border-style:solid;
+border-width: 2px;
+border-color: #999999;
+border-radius: 10px;
+/*background-color:rgb(58, 122, 62);*/
+
+background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+stop: 0 #CCCCCC, stop: 1 #AAAAAA);
+}
+QPushButton:hover{
+background-color:#0077b6;
+
+color:rgb(255,255,255);
+ 
+}
+QPushButton:pressed{
+background-color:#0077b6;}</string>
+          </property>
+          <property name="text">
+           <string>AFFICHER</string>
+          </property>
+          <property name="icon">
+           <iconset resource="res.qrc">
+            <normaloff>:/prefix/new/res/calcul.png</normaloff>:/prefix/new/res/calcul.png</iconset>
+          </property>
+         </widget>
+         <widget class="QPushButton" name="B_produit_satistique">
+          <property name="geometry">
+           <rect>
+            <x>190</x>
+            <y>280</y>
+            <width>111</width>
+            <height>31</height>
+           </rect>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">
+QPushButton{
+border-style:solid;
+border-width: 2px;
+border-color: #999999;
+border-radius: 10px;
+/*background-color:rgb(58, 122, 62);*/
+
+background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+stop: 0 #CCCCCC, stop: 1 #AAAAAA);
+}
+QPushButton:hover{
+background-color:#0077b6;
+
+color:rgb(255,255,255);
+ 
+}
+QPushButton:pressed{
+background-color:#0077b6;}</string>
+          </property>
+          <property name="text">
+           <string>STATISTIQUE</string>
+          </property>
+          <property name="icon">
+           <iconset resource="res.qrc">
+            <normaloff>:/prefix/new/res/stat.png</normaloff>:/prefix/new/res/stat.png</iconset>
+          </property>
+         </widget>
+        </widget>
+        <widget class="QGroupBox" name="groupBox_7">
+         <property name="geometry">
+          <rect>
+           <x>380</x>
+           <y>50</y>
+           <width>361</width>
+           <height>311</height>
+          </rect>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">border-radius:40px;
+background-color:white;font: 75 12pt &quot;System&quot;;</string>
+         </property>
+         <property name="title">
+          <string>       LES MATERIELLES</string>
+         </property>
+         <widget class="QTableView" name="tabl_produit">
+          <property name="geometry">
+           <rect>
+            <x>10</x>
+            <y>20</y>
+            <width>341</width>
+            <height>271</height>
+           </rect>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">background-color:#0077b6;border:black;
+border-radius:0px;</string>
+          </property>
+          <property name="frameShadow">
+           <enum>QFrame::Plain</enum>
+          </property>
+         </widget>
+         <widget class="QGroupBox" name="groupBox_8">
+          <property name="geometry">
+           <rect>
+            <x>10</x>
+            <y>389</y>
+            <width>120</width>
+            <height>71</height>
+           </rect>
+          </property>
+          <property name="title">
+           <string>GroupBox</string>
+          </property>
+         </widget>
+        </widget>
+        <widget class="QGroupBox" name="groupBox_9">
+         <property name="geometry">
+          <rect>
+           <x>380</x>
+           <y>380</y>
+           <width>361</width>
+           <height>71</height>
+          </rect>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">font: 75 12pt &quot;System&quot;;border-radius:20px;
+background-color:white;</string>
+         </property>
+         <property name="title">
+          <string>SUPPRIMER</string>
+         </property>
+         <widget class="QPushButton" name="B_produit_supprimer">
+          <property name="geometry">
+           <rect>
+            <x>230</x>
+            <y>20</y>
+            <width>111</width>
+            <height>31</height>
+           </rect>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">
+QPushButton{
+border-style:solid;
+border-width: 2px;
+border-color: #999999;
+border-radius: 10px;
+/*background-color:rgb(58, 122, 62);*/
+
+background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+stop: 0 #CCCCCC, stop: 1 #AAAAAA);
+}
+QPushButton:hover{
+background-color:#0077b6;
+
+color:rgb(255,255,255);
+ 
+}
+QPushButton:pressed{
+background-color:#0077b6;}</string>
+          </property>
+          <property name="text">
+           <string>SUPPRIMER</string>
+          </property>
+          <property name="icon">
+           <iconset resource="res.qrc">
+            <normaloff>:/prefix/new/res/trash-2.png</normaloff>:/prefix/new/res/trash-2.png</iconset>
+          </property>
+         </widget>
+         <widget class="QLineEdit" name="E_produit_ID_supprimer">
+          <property name="geometry">
+           <rect>
+            <x>10</x>
+            <y>30</y>
+            <width>191</width>
+            <height>21</height>
+           </rect>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">
+QLineEdit{
+border:2px solid rgb(163, 163, 163);
+/*border:	rgb(179, 179, 179);*/
+border-radius:8px;
+/*color:rgb(165, 165, 165);*/
+padding-left:8px;
+padding-right:8px;
+/*background-color:rgb(255, 255, 255);*/}
+QLineEdit:hover{
+border:2px solid rgb(48,50,62);
+border-radius:8px;
+}
+QLineEdit:focus{
+border:2px solid rgb(163, 163, 163);
+border-radius:8px;}</string>
+          </property>
+         </widget>
+        </widget>
+        <widget class="QPushButton" name="suiv1_2">
+         <property name="geometry">
+          <rect>
+           <x>650</x>
+           <y>470</y>
+           <width>91</width>
+           <height>21</height>
+          </rect>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">
+QPushButton{
+border-style:solid;
+border-width: 2px;
+border-color: #999999;
+border-radius: 10px;
+/*background-color:rgb(58, 122, 62);*/
+
+background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+stop: 0 #CCCCCC, stop: 1 #AAAAAA);
+}
+QPushButton:hover{
+background-color:#0077b6;
+
+color:rgb(255,255,255);
+ 
+}
+QPushButton:pressed{
+background-color:#0077b6;}</string>
+         </property>
+         <property name="text">
+          <string>SUIVANT</string>
+         </property>
+         <property name="icon">
+          <iconset resource="res.qrc">
+           <normaloff>:/prefix/new/res/arrow-right.png</normaloff>:/prefix/new/res/arrow-right.png</iconset>
+         </property>
+        </widget>
+        <widget class="QComboBox" name="B_produit_tri">
+         <property name="geometry">
+          <rect>
+           <x>610</x>
+           <y>10</y>
+           <width>81</width>
+           <height>21</height>
+          </rect>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">background-color:white;
+border-radius:6px;</string>
+         </property>
+         <item>
+          <property name="text">
+           <string>Tri Par:</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>idP</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>place</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>nomP</string>
+          </property>
+         </item>
+        </widget>
+        <widget class="QLineEdit" name="E_produit_Reherche">
+         <property name="geometry">
+          <rect>
+           <x>400</x>
+           <y>10</y>
+           <width>191</width>
+           <height>31</height>
+          </rect>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">
+QLineEdit{
+background-color:rgb(255, 255, 255);
+border:2px solid rgb(163, 163, 163);
+/*border:	rgb(179, 179, 179);*/
+border-radius:8px;
+/*color:rgb(165, 165, 165);*/
+padding-left:8px;
+padding-right:8px;
+/*background-color:rgb(255, 255, 255);*/}
+QLineEdit:hover{
+border:2px solid rgb(48,50,62);
+border-radius:8px;
+}
+QLineEdit:focus{
+background-color:rgb(255, 255, 255);
+border-radius:8px;}</string>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+        </widget>
+       </widget>
+       <widget class="QWidget" name="page_8">
+        <widget class="QPlainTextEdit" name="plainTextEdit">
+         <property name="geometry">
+          <rect>
+           <x>10</x>
+           <y>10</y>
+           <width>561</width>
+           <height>441</height>
+          </rect>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">background-color:white;
+</string>
+         </property>
+        </widget>
+        <widget class="QPushButton" name="B_produit_Historique_2">
+         <property name="geometry">
+          <rect>
+           <x>590</x>
+           <y>250</y>
+           <width>141</width>
+           <height>28</height>
+          </rect>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">
+QPushButton{
+border-style:solid;
+border-width: 2px;
+border-color: #999999;
+border-radius: 10px;
+/*background-color:rgb(58, 122, 62);*/
+
+background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+stop: 0 #CCCCCC, stop: 1 #AAAAAA);
+}
+QPushButton:hover{
+background-color:#0077b6;
+
+color:rgb(255,255,255);
+ 
+}
+QPushButton:pressed{
+background-color:#0077b6;}</string>
+         </property>
+         <property name="text">
+          <string> Affichage Historique</string>
+         </property>
+        </widget>
+        <widget class="QPushButton" name="avant_4">
+         <property name="geometry">
+          <rect>
+           <x>10</x>
+           <y>470</y>
+           <width>81</width>
+           <height>20</height>
+          </rect>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QPushButton{
+border-style:solid;
+border-width: 2px;
+border-color: #999999;
+border-radius: 10px;
+/*background-color:rgb(58, 122, 62);*/
+
+background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+stop: 0 #CCCCCC, stop: 1 #AAAAAA);
+}
+QPushButton:hover{
+background-color:#0077b6;
+
+color:rgb(255,255,255);
+ 
+}
+QPushButton:pressed{
+background-color:#0077b6;}</string>
+         </property>
+         <property name="text">
+          <string>AVANT</string>
+         </property>
+         <property name="icon">
+          <iconset resource="res.qrc">
+           <normaloff>:/prefix/new/res/left.png</normaloff>:/prefix/new/res/left.png</iconset>
+         </property>
         </widget>
        </widget>
       </widget>

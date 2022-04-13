@@ -12,6 +12,9 @@
 #include<QMediaPlayer>
 #include"login.h"
 #include"popup.h"
+#include"materiel.h"
+#include "arduino.h"
+
 namespace Ui {
 class MainWindow;
 }
@@ -65,8 +68,12 @@ private:
   QSystemTrayIcon *notifier;
     projet P;
     notification N;
-    PopUp *popUp;       // Объявляем объект всплывающего сообщения
+    PopUp *popUp;
+    Materiel M ;
+    QByteArray data; // variable contenant les données reçues
 
+
+    Arduino A;
 login *l;
 private slots:
     void NumPressed();
@@ -104,6 +111,37 @@ private slots:
     void on_rechercher_local_textChanged(const QString &arg1);
 
     void on_notif_clicked();
+    void on_materielle_clicked();
+
+
+
+    void on_B_produit_ajouter_clicked();
+
+    void on_B_produit_supprimer_clicked();
+
+    void on_B_produit_Afficher_clicked();
+
+    void on_B_produit_Modifier_clicked();
+
+    void on_E_produit_Reherche_textChanged(const QString &arg1);
+
+
+    void on_B_produit_tri_textActivated(const QString &arg1);
+
+    void on_B_produit_Imprimer_clicked();
+
+    void on_B_produit_tri_activated();
+
+
+    void on_B_produit_Historique_clicked();
+
+    void on_B_produit_satistique_clicked();
+
+    void on_B_produit_Historique_2_clicked();
+
+    void on_B_produit_Imprimer_2_clicked();
+    void on_suiv1_2_clicked();
+    void on_avant_4_clicked();
 };
 
 #endif // MAINWINDOW_H

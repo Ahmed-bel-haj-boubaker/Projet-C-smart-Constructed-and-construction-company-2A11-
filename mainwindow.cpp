@@ -18,12 +18,10 @@
 #include <QPainter>
 #include <QPdfWriter>
 #include <QPrintDialog>
-#include<QQuickItem>
 #include <QApplication>
 #include <QLabel>
 #include <QPixmap>
-#include <QTextStream>
-#include<vector>
+
 #include"employer.h"
 #include <QSoundEffect>
 #include<QSound>
@@ -49,7 +47,16 @@ MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
 {
-
+    int ret=A.connect_arduino(); // lancer la connexion à arduino
+    switch(ret){
+    case(0):qDebug()<< "arduino is available and connected to : "<< A.getarduino_port_name();
+        break;
+    case(1):qDebug() << "arduino is available but not connected to :" <<A.getarduino_port_name();
+       break;
+    case(-1):qDebug() << "arduino is not available";
+    }
+     QObject::connect(A.getserial(),SIGNAL(readyRead()),this,SLOT(update_label())); // permet de lancer
+     //le slot update_label suite à la reception du signal readyRead (reception des données).
 
     notifier = new QSystemTrayIcon(this);
         notifier->setIcon(QIcon(":/prefix/new/res/notification.jpg"));
@@ -90,7 +97,18 @@ ui->info_2->hide();
     ui->tab_projet->setModel(P.afficher());
     ui->tab_projet_2->setModel(P.afficher());
 
+    QString date_string_on_db = "05/04/2022";
+    QDate Date = QDate::fromString(date_string_on_db,"dd/MM/yyyy");
+    if(QDate::currentDate()==Date)M.appliquerRemise();
+  ui->E_produit_ID->setValidator(new QIntValidator(0, 9999999, this));
+  ui->E_produit_Prix->setValidator(new QIntValidator(0, 9999999, this));
+  ui->E_produit_Quantiter->setValidator(new QIntValidator(0, 9999999, this));
+  ui->E_produit_Remise->setValidator(new QIntValidator(0, 9999999, this));
+  QRegExp rx("[a-zA-Z]+");
+      QValidator *validator = new QRegExpValidator(rx, this);
+      ui->E_produit_Nom->setValidator(validator);
 
+ui->tabl_produit->setModel(M.afficher());
 
 
 
@@ -329,7 +347,7 @@ void MainWindow::NumPressed()
     {
         QString newVal = displayVal + buttonVal;
         double dblNewVal = newVal.toDouble();
-        ui->Display->setText(QString::number(dblNewVal, 'g', 16));
+        ui->Display->setText(QString::number(dblNewVal));
     }
 }
 
@@ -1098,4 +1116,467 @@ void MainWindow::on_notif_clicked()
     ui->info_2->show();
 
 ui->info_2->setModel(P.afficher());
+}
+
+void MainWindow::on_materielle_clicked()
+{
+    ui->stackedWidget_2->setCurrentIndex(5);
+}
+
+
+/**************MATERILLES***********************/
+void MainWindow::on_B_produit_ajouter_clicked()
+{
+    QFile f("C:/Users/ALPHA/Desktop/ProjetAhmed/historique.txt");
+        if(!f.open(QFile::WriteOnly |QIODevice::Append | QFile::Text))
+        {
+        QMessageBox::warning(this,"title","file not open");
+        }
+        QTextStream outt(&f);
+        QString text = "  Ajouter \r\n";
+        QString sDate = QDateTime::currentDateTime().toString("dddd dd MMMM yyyy hh:mm:ss.zzz :");
+        outt << sDate;
+        outt << text ;
+        f.flush();
+        f.close();
+
+    int ID_PRODUIT=ui->E_produit_ID->text().toInt();
+    int QUANTITER=ui->E_produit_Quantiter->text().toInt();
+   QString NOM_PRODUIT=ui->E_produit_Nom->text();
+   double PRIX_PRODUIT=ui->E_produit_Prix->text().toDouble();
+   int REMISE=ui->E_produit_Remise->text().toInt();
+
+       Materiel M(ID_PRODUIT,QUANTITER,NOM_PRODUIT,PRIX_PRODUIT,REMISE);
+
+       bool test=M.ajouter();
+       QMessageBox msgBox;
+       if(test)
+       {
+           QString date_string_on_db = "06/04/2022";
+           QDate Date = QDate::fromString(date_string_on_db,"dd/MM/yyyy");
+           if(QDate::currentDate()==Date)M.appliquerRemise();
+           QSystemTrayIcon* notifier = new QSystemTrayIcon(this);
+                           notifier->setIcon(QIcon("C:/Users/User/Desktop/Gestion_materiele/main.png"));
+                            notifier->show();
+                            notifier->showMessage("Materiel ajouté","Succes",QSystemTrayIcon::Information,10000);
+
+                           }
+                           else
+                           {
+           QSystemTrayIcon* notifier = new QSystemTrayIcon(this);
+                           notifier->setIcon(QIcon(""));
+                            notifier->show();
+                            notifier->showMessage("Materiel non ajouté","Echéc",QSystemTrayIcon::Critical,10000);
+
+                           }
+                           ui->tabl_produit->setModel(M.afficher());
+      }
+
+
+
+
+void MainWindow::on_B_produit_supprimer_clicked()
+{
+    QFile f("C:/Users/ALPHA/Desktop/ProjetAhmed/historique.txt");
+        if(!f.open(QFile::WriteOnly |QIODevice::Append | QFile::Text))
+        {
+        QMessageBox::warning(this,"title","file not open");
+        }
+        QTextStream outt(&f);
+        QString text = "  Supprimer \r\n";
+        QString sDate = QDateTime::currentDateTime().toString("dddd dd MMMM yyyy hh:mm:ss.zzz :");
+        outt << sDate;
+        outt << text ;
+        f.flush();
+        f.close();
+    Materiel M1; M1.setID_PRODUIT(ui->E_produit_ID_supprimer->text().toInt());
+    bool test=M1.supprimer(M1.getID_PRODUIT());
+
+    if(test)
+    {  QSystemTrayIcon* notifier = new QSystemTrayIcon(this);
+        notifier->setIcon(QIcon(""));
+         notifier->show();
+         notifier->showMessage("Materiel supprimé","Succés",QSystemTrayIcon::Information,10000);
+
+        ui->tabl_produit->setModel(M.afficher());
+    }
+
+    else{
+        QSystemTrayIcon* notifier = new QSystemTrayIcon(this);
+                        notifier->setIcon(QIcon(""));
+                         notifier->show();
+                         notifier->showMessage("Materiel non supprimé","Echéc",QSystemTrayIcon::Critical,10000);
+
+    }
+       }
+
+void MainWindow::on_B_produit_Afficher_clicked()
+{
+    QFile f("C:/Users/ALPHA/Desktop/ProjetAhmed/historique.txt");
+        if(!f.open(QFile::WriteOnly |QIODevice::Append | QFile::Text))
+        {
+        QMessageBox::warning(this,"title","file not open");
+        }
+        QTextStream outt(&f);
+        QString text = "  Afficher \r\n";
+        QString sDate = QDateTime::currentDateTime().toString("dddd dd MMMM yyyy hh:mm:ss.zzz :");
+        outt << sDate;
+        outt << text ;
+        f.flush();
+        f.close();
+    ui->tabl_produit->setModel(M.afficher());
+
+}
+
+void MainWindow::on_B_produit_Modifier_clicked()
+{
+    QFile f("C:/Users/ALPHA/Desktop/ProjetAhmed/historique.txt");
+        if(!f.open(QFile::WriteOnly |QIODevice::Append | QFile::Text))
+        {
+        QMessageBox::warning(this,"title","file not open");
+        }
+        QTextStream outt(&f);
+        QString text = "  Modifier \r\n";
+        QString sDate = QDateTime::currentDateTime().toString("dddd dd MMMM yyyy hh:mm:ss.zzz :");
+        outt << sDate;
+        outt << text ;
+        f.flush();
+        f.close();
+    int ID_PRODUIT=ui->E_produit_ID->text().toInt();
+        int QUANTITER=ui->E_produit_Quantiter->text().toInt();
+       QString NOM_PRODUIT=ui->E_produit_Nom->text();
+       double PRIX_PRODUIT=ui->E_produit_Prix->text().toDouble();
+       int REMISE=ui->E_produit_Remise->text().toInt();
+
+       Materiel M(ID_PRODUIT,QUANTITER,NOM_PRODUIT,PRIX_PRODUIT,REMISE);
+
+
+             bool test=M.modifier(ID_PRODUIT,QUANTITER,NOM_PRODUIT,PRIX_PRODUIT,REMISE);
+             if(test)
+           {
+                 QString date_string_on_db = "06/04/2022";
+                 QDate Date = QDate::fromString(date_string_on_db,"dd/MM/yyyy");
+                 if(QDate::currentDate()==Date)M.appliquerRemise();
+
+
+                 ui->tabl_produit->setModel(M.afficher());
+                 QSystemTrayIcon* notifier = new QSystemTrayIcon(this);
+                                 notifier->setIcon(QIcon(""));
+                                  notifier->show();
+                                  notifier->showMessage("Materiel modifié","Succes",QSystemTrayIcon::Information,10000);
+
+
+           }
+             else
+               {  QSystemTrayIcon* notifier = new QSystemTrayIcon(this);
+                                 notifier->setIcon(QIcon(""));
+                                  notifier->show();
+                                  notifier->showMessage("Materiel non modifié","Echec",QSystemTrayIcon::Critical,10000);
+
+}}
+
+void MainWindow::on_E_produit_Reherche_textChanged(const QString &arg1)
+{
+    QFile f("C:/Users/ALPHA/Desktop/ProjetAhmed/historique.txt");
+        if(!f.open(QFile::WriteOnly |QIODevice::Append | QFile::Text))
+        {
+        QMessageBox::warning(this,"title","file not open");
+        }
+        QTextStream outt(&f);
+        QString text = "  Recherche \r\n";
+        QString sDate = QDateTime::currentDateTime().toString("dddd dd MMMM yyyy hh:mm:ss.zzz :");
+        outt << sDate;
+        outt << text ;
+        f.flush();
+        f.close();
+    ui->tabl_produit->setModel(M.Recherche(arg1));
+    }
+
+
+void MainWindow::on_B_produit_tri_textActivated(const QString &arg1)
+{
+
+    if(arg1==1)
+                          ui->tabl_produit->setModel(M.trierMaterielParid());
+                else if(arg1==2)
+                          ui->tabl_produit->setModel(M.trierMaterielParNom());
+                else if(arg1==3)
+                          ui->tabl_produit->setModel(M.trierMaterielParprix());
+
+
+
+  }
+
+
+
+void MainWindow::on_B_produit_Imprimer_clicked()
+{
+
+
+
+    QFile f("C:/Users/ALPHA/Desktop/ProjetAhmed/historique.txt");
+
+
+        if(!f.open(QFile::WriteOnly |QIODevice::Append | QFile::Text))
+        {
+        QMessageBox::warning(this,"title","file not open");
+        }
+        QTextStream outt(&f);
+        QString text = "  Imprimer \r\n";
+        QString sDate = QDateTime::currentDateTime().toString("dddd dd MMMM yyyy hh:mm:ss.zzz :");
+        outt << sDate;
+        outt << text ;
+        f.flush();
+        f.close();
+        QString fileName = QFileDialog::getSaveFileName((QWidget* )0, "Export PDF", QString(), "*.pdf");
+           if (QFileInfo(fileName).suffix().isEmpty()) { fileName.append(".pdf"); }
+
+           QPrinter printer(QPrinter::PrinterResolution);
+           printer.setOutputFormat(QPrinter::PdfFormat);
+           printer.setPaperSize(QPrinter::A4);
+           printer.setOutputFileName(fileName);
+
+           QTextDocument doc;
+           QSqlQuery q;
+           q.prepare("SELECT * FROM  MATERIELLES ");
+           q.exec();
+           QString pdf="<br> <h1  style='color:blue'>LISTE DES materielles  <br></h1>\n <br> <table>  <tr>  <th>ID_PRODUIT </th> <th>QUANTITER </th> <th>   </th> <th>NOM_PRODUIT  </th><th>PRIX_PRODUIT </th><th>REMISE  </th> </tr>" ;
+
+
+           while ( q.next()) {
+
+
+               pdf= pdf+ " <br> <tr> <td>"+ q.value(0).toString()+" " + q.value(1).toString() +"</td>   <td>" +q.value(2).toInt() +" <td>" +q.value(3).toInt() +" <td>" +q.value(4).toString() +" <td>" +q.value(5).toInt() +" "" " "</td> </td>" ;
+           }
+           doc.setHtml(pdf);
+           doc.setPageSize(printer.pageRect().size()); // This is necessary if you want to hide the page number
+           doc.print(&printer);
+
+}
+
+
+
+
+void MainWindow::on_B_produit_tri_activated()
+{
+    QFile f("C:/Users/ALPHA/Desktop/ProjetAhmed/historique.txt");
+        if(!f.open(QFile::WriteOnly |QIODevice::Append | QFile::Text))
+        {
+        QMessageBox::warning(this,"title","file not open");
+        }
+        QTextStream outt(&f);
+        QString text = "  Tri \r\n";
+        QString sDate = QDateTime::currentDateTime().toString("dddd dd MMMM yyyy hh:mm:ss.zzz :");
+        outt << sDate;
+        outt << text ;
+        f.flush();
+        f.close();
+
+        if (ui->B_produit_tri->currentText()=="Tri Par ID_PRODUIT")
+        {
+            ui->tabl_produit->setModel(M.trierMaterielParid());
+        }
+        else if(ui->B_produit_tri->currentText()=="Tri Par NOM_PRODUIT")
+        {
+            ui->tabl_produit->setModel(M.trierMaterielParNom());
+        }
+        else
+        {
+            ui->tabl_produit->setModel(M.trierMaterielParprix());
+        }
+
+
+}
+
+
+
+void MainWindow::on_B_produit_Historique_clicked()
+{
+
+}
+
+void MainWindow::on_B_produit_satistique_clicked()
+{
+    QFile f("C:/Users/ALPHA/Desktop/ProjetAhmed/historique.txt");
+        if(!f.open(QFile::WriteOnly |QIODevice::Append | QFile::Text))
+        {
+        QMessageBox::warning(this,"title","file not open");
+        }
+        QTextStream outt(&f);
+        QString text = "  Stastique \r\n";
+        QString sDate = QDateTime::currentDateTime().toString("dddd dd MMMM yyyy hh:mm:ss.zzz :");
+        outt << sDate;
+        outt << text ;
+        f.flush();
+        f.close();
+    QSqlQueryModel * model= new QSqlQueryModel();
+            model->setQuery("select * from MATERIELLES where  QUANTITER >= 500");
+            float dispo1=model->rowCount();
+
+            model->setQuery("select * from MATERIELLES where QUANTITER <500");
+            float dispo=model->rowCount();
+
+            float total=dispo1+dispo;
+                QString a=QString("stockes . " +QString::number((dispo1*100)/total,'f',2)+"%" );
+                QString b=QString("ventes .  "+QString::number((dispo*100)/total,'f',2)+"%" );
+                QPieSeries *series = new QPieSeries();
+                series->append(a,dispo1);
+                series->append(b,dispo);
+            if (dispo1!=0)
+            {QPieSlice *slice = series->slices().at(0);
+                slice->setLabelVisible();
+                slice->setPen(QPen());}
+            if ( dispo!=0)
+            {
+                QPieSlice *slice1 = series->slices().at(1);
+                slice1->setLabelVisible();
+            }
+
+            QChart *chart = new QChart();
+
+
+            chart->addSeries(series);
+            chart->setTitle(" des  QUANTITER :Nb QUANTITER: "+ QString::number(total));
+            chart->legend()->hide();
+
+
+            QChartView *chartView = new QChartView(chart);
+            chartView->setRenderHint(QPainter::Antialiasing);
+            chartView->resize(1000,500);
+            chartView->show();
+}
+
+
+void MainWindow::on_B_produit_Historique_2_clicked()
+{
+    QFile f("C:/Users/ALPHA/Desktop/ProjetAhmed/historique.txt");
+        if(!f.open(QFile::WriteOnly |QIODevice::Append | QFile::Text))
+        {
+        QMessageBox::warning(this,"title","file not open");
+        }
+        QTextStream outt(&f);
+        QString text = "  historique \r\n";
+        QString sDate = QDateTime::currentDateTime().toString("dddd dd MMMM yyyy hh:mm:ss.zzz :");
+        outt << sDate;
+        outt << text ;
+        f.flush();
+        f.close();
+        if(!f.open(QFile::ReadOnly | QFile::Text))
+        {
+        QMessageBox::warning(this,"title","file not open");
+        }
+        QTextStream in(&f);
+        QString textt = in.readAll();
+        ui->plainTextEdit->setPlainText(textt);
+        f.close();
+
+}
+
+void MainWindow::on_B_produit_Imprimer_2_clicked()
+{
+    QDate date = QDate::currentDate();
+        QString dte=date.toString("dd.MM.yyyy");
+        QString html1="<!DOCTYPE html>"
+                     "<html>"
+                     "<head>"
+                     "<style>"
+                     "#customers {"
+                      " font-family: 'Trebuchet MS', Arial, Helvetica, sans-serif;"
+                       "border-collapse: collapse;"
+                        "width: 100%;"
+                     "}"
+
+                     "#customers td, #customers th {"
+                       "border: 1px solid #ddd;"
+                       "padding: 8px;"
+                     "}"
+
+                     "#customers tr:nth-child(even){background-color: #f2f2f2;}"
+
+                     "#customers tr:hover {background-color: #ddd;}"
+
+                     "#customers th {"
+                       "padding-top: 12px;"
+                       "padding-bottom: 12px;"
+                       "text-align: left;"
+                       "background-color: #4CAF50;"
+                       "color: white;"
+                     "}"
+                     "</style>"
+                     "</head>"
+                     "<body>"
+                      "<div align=right>"
+                         "Ariana,"+dte+""
+                "<img src=':/prefix/new/res/constop.png' ></img>"
+                      "</div>"
+                     "<div><h1 align='center'>La liste des Projets</h1></div>"
+                     "<br/>"
+                     "<table id='customers';margin-left:auto;margin-right:auto;>"
+                       "<tr>"
+                         "<th>Identifiant</th>"
+                         "<th>Localisation</th>"
+                         "<th>Nom Projet</th>"
+                         "<th>Date de debut</th>"
+                         "<th>Date fin</th>"
+
+                       "</tr>";
+
+        QString html2="";
+            QSqlQuery query;
+            query.prepare("select * from MATERILLES ");
+           if (query.exec())
+            {
+                while (query.next())
+                {
+                   html2=html2+"<tr>"
+                  "<td>"+query.value(0).toString()+"</td>"
+                  "<td>"+query.value(1).toString()+"</td>"
+                  "<td>"+query.value(2).toString()+"</td>"
+                  "<td>"+query.value(3).toString()+"</td>"
+                  "<td>"+query.value(4).toString()+"</td>"
+
+                "</tr>";
+                }
+            }
+
+    QString html3="</table>"
+                     "</body>"
+                     "</html> ";
+    QString html=html1+html2+html3;
+
+        QTextDocument document;
+        document.setHtml(html);
+
+        QPrinter printer(QPrinter::HighResolution);
+
+
+        printer.setPaperSize(QPrinter::A4);
+
+        QPrintDialog *dialog = new QPrintDialog(&printer);
+        if (dialog->exec() == QDialog::Accepted)
+        {
+            document.print(&printer);
+            QPainter painter (&printer);
+            painter.begin(&printer);
+
+
+
+        printer.setPageMargins(QMarginsF(15, 15, 15, 15));
+
+
+        painter.end();
+
+        }
+}
+
+
+void MainWindow::on_suiv1_2_clicked()
+{
+    ui->stackedWidget_2->setCurrentIndex(6);
+}
+
+void MainWindow::on_avant_4_clicked()
+{
+    ui->stackedWidget_2->setCurrentIndex(5);
+
 }
