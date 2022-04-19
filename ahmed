@@ -147,3 +147,29 @@ if (Serial.available()){
   }
 }
 lcd.print
+int  employer::chercher_employer_id(QString D)
+ {
+
+       employer E;
+
+        QSqlQuery checkQuery;
+        checkQuery.prepare("SELECT * FROM employer  WHERE  id_employer=:D");
+        checkQuery.bindValue(":D",D);
+
+        if (checkQuery.exec())
+        {qDebug() << "employer trouver:" ;
+
+            if (checkQuery.next())
+            {
+              return  checkQuery.value(3).toInt();
+
+
+
+
+            }
+        }
+
+
+ qDebug() << "employer n'est pas trouver:";
+return 100;
+      }
