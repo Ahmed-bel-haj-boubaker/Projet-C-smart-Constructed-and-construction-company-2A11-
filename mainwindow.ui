@@ -357,7 +357,7 @@ color: rgb(255, 255, 255);
      <widget class="QPushButton" name="pdf">
       <property name="geometry">
        <rect>
-        <x>570</x>
+        <x>580</x>
         <y>490</y>
         <width>93</width>
         <height>28</height>
@@ -412,6 +412,29 @@ color: rgb(255, 255, 255);
        <string>stat</string>
       </property>
      </widget>
+     <widget class="QPushButton" name="pb_alarm">
+      <property name="geometry">
+       <rect>
+        <x>40</x>
+        <y>450</y>
+        <width>93</width>
+        <height>28</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>alerte</string>
+      </property>
+     </widget>
+     <widget class="QTableView" name="tableView_alerte">
+      <property name="geometry">
+       <rect>
+        <x>150</x>
+        <y>410</y>
+        <width>256</width>
+        <height>192</height>
+       </rect>
+      </property>
+     </widget>
      <zorder>label</zorder>
      <zorder>groupBox</zorder>
      <zorder>tab_client</zorder>
@@ -422,6 +445,8 @@ color: rgb(255, 255, 255);
      <zorder>recherche</zorder>
      <zorder>bouton_excel</zorder>
      <zorder>stat</zorder>
+     <zorder>pb_alarm</zorder>
+     <zorder>tableView_alerte</zorder>
     </widget>
     <widget class="QWidget" name="tab_2">
      <attribute name="title">

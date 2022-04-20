@@ -39,6 +39,7 @@ QSqlQueryModel* afficher();
     bool modifierClient(int id_client,QString nom_client ,QString prenom_client,QString adresse_client,int num_tel_client, QString email_client);
 QSqlQueryModel * trierid();
 void recherche(QTableView * tabl, int);
+QSqlQueryModel * getAlertes();
 
 private:
     int id_client,num_tel_client;

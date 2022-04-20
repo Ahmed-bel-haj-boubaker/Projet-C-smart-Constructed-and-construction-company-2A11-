@@ -18,6 +18,9 @@
 #include <QSqlQueryModel>
 #include <QObject>
 #include <QPrintDialog>
+#include <QDesktopServices>
+#include <arduino.h>
+
 Client C;
 arduino Ard;
 MainWindow::MainWindow(QWidget *parent) :
@@ -27,8 +30,25 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->setupUi(this);
     ui->le_id->setValidator(new QIntValidator(0, 9999999, this));
    ui->tab_client->setModel(C.afficher());
+   ui->tableView_alerte->setModel(C.getAlertes());
    ui->tab_client->setModel(C.trierid());
    ui->comboBox->setModel(C.afficher());
+
+
+
+
+   /////////////
+   int ret=Ard.connect_arduino(); // lancer la connexion à arduino
+        switch(ret){
+        case(0):qDebug()<< "arduino is available and connected to : "<< Ard.getarduino_port_name();
+            break;
+        case(1):qDebug() << "arduino is available but not connected to :" <<Ard.getarduino_port_name();
+           break;
+        case(-1):qDebug() << "arduino is not available";
+        }
+         QObject::connect(Ard.getserial(),SIGNAL(readyRead()),this,SLOT(update_temperature())); //permet de lancer le slot update_ suite a la reception du signal readyread
+
+
 }
 
 MainWindow::~MainWindow()
@@ -400,8 +420,13 @@ void MainWindow::on_comboBox_activated(const QString &arg1)
 
 
 }
-
+/*
+void MainWindow::on_buzzer_clicked()
+{
+    ui->tab_client->setCurrentIndex(0); //tbdel l page//
+}*/
 //afffficher mess box kn fama alerte
+/*
 void MainWindow::update_temperature()
 {
     qDebug()<<Ard.read_from_arduino(); // afficher louuuta
@@ -412,5 +437,38 @@ void MainWindow::update_temperature()
         QMessageBox::critical(nullptr, QObject::tr("flame"),
                     QObject::tr("alerte flame!.\n"
                                 "Click Cancel to exit."), QMessageBox::Cancel);
+
     }
+}*/
+//afffficher mess box kn fama alerte
+
+ void MainWindow::update_temperature()
+{
+    if (Ard.read_from_arduino()!="")
+        //
+       {
+        QMessageBox::critical(nullptr, QObject::tr("gaz"),
+                    QObject::tr("alerte gaz!.\n"
+                                "Click Cancel to exit."), QMessageBox::Cancel);
+
+        QSqlQuery query;
+        query.prepare("INSERT INTO ALERTE_GAZ (DATE_A) "
+                      "VALUES (:DATE_A)");
+        query.bindValue(":DATE_A",QDateTime::currentDateTime().toString());
+
+        query.exec();
+        ui->tableView_alerte->setModel(C.getAlertes());
+
+
+    }
+
 }
+
+
+void MainWindow::on_pb_alarm_clicked()
+{
+     Ard.write_arduino("1");//output
+}
+
+
+

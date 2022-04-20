@@ -22,6 +22,7 @@ class MainWindow : public QMainWindow
 
 public:
     explicit MainWindow(QWidget *parent = nullptr);
+
     ~MainWindow();
 
 private slots:
@@ -42,14 +43,17 @@ private slots:
 
     void on_pushButton_9_clicked();
 
-    void on_buzzer_clicked();
-    void on_update_temperature_clicked();
+    //void on_buzzer_clicked();
+    //void on_update_temperature_clicked();
     void on_pushButton_11_clicked();
      void on_pdf_clicked();
      void on_bouton_excel_clicked();
      void on_stat_clicked();
      void on_comboBox_activated(const QString &arg1);
 void update_temperature();
+
+void on_pb_alarm_clicked();
+
 private:
     Ui::MainWindow *ui;
     Client C;

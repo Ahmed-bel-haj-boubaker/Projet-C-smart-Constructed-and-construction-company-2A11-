@@ -105,8 +105,7 @@ QSqlQueryModel * Client::trierid()
      model->setHeaderData(4,Qt::Horizontal,QObject::tr("NUM_TEL_CLIENT"));
      model->setHeaderData(5,Qt::Horizontal,QObject::tr("EMAIL_CLIENT"));
 
-
-     return model;
+      return model;
  }
 
 
@@ -125,5 +124,14 @@ void Client::recherche(QTableView * table ,int id_client )
     table->setModel(model);
     table->show();
 
+}
+QSqlQueryModel * Client::getAlertes()
+{
+    QSqlQueryModel * model= new QSqlQueryModel();
+
+    model->setQuery("SELECT * FROM ALERTE_GAZ ");
+    model->setHeaderData(0,Qt::Horizontal,QObject::tr("DATE_A"));
+
+    return model;
 }
 

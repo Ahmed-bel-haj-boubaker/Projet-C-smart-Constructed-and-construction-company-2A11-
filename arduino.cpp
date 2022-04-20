@@ -23,14 +23,14 @@ int arduino::connect_arduino()
             }
         }
         qDebug()<< "arduino proort name is"<<arduino_port_name << arduino_is_available;
-        if(arduino_is_available){
+        if(arduino_is_available){ //configuration de la communication
             // open and configure the serialport
             serial->setPortName(arduino_port_name);
             serial->open(QSerialPort::ReadWrite);
-            serial->setBaudRate(QSerialPort::Baud115200);// quand je dois initialiser l'arduino de pref je mets Serial.begin(115200);
-            serial->setDataBits(QSerialPort::Data8);//sur 8bits
-            serial->setParity(QSerialPort::NoParity);
-            serial->setStopBits(QSerialPort::OneStop);
+            serial->setBaudRate(QSerialPort::Baud115200);// quand je dois initialiser l'arduino de pref je mets Serial.begin(115200) debit;
+            serial->setDataBits(QSerialPort::Data8);//longuer des données 8bits
+            serial->setParity(QSerialPort::NoParity); //1bit
+            serial->setStopBits(QSerialPort::OneStop); //nbr de bit de stop 1
             serial->setFlowControl(QSerialPort::NoFlowControl);
             return 0;
 
@@ -54,7 +54,7 @@ QByteArray arduino::read_from_arduino()
     }
 }
 
-QSerialPort *arduino::getserial()
+QSerialPort *arduino::getserial() //
 {
     return serial;
 }
